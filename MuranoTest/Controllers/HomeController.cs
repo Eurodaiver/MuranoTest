@@ -29,12 +29,17 @@ namespace MuranoTest.Controllers
         {
             var google = new GoogleEngine();
             var yandex = new YandexEngine();
+            var bing = new BingEngine();
 
-            var allTasks = new List<Task<SearchResult>> { google.SearchAsync(TextRequest), yandex.SearchAsync(TextRequest)};//добавить нужную реализацию поиска в список
+            var allTasks = new List<Task<SearchResult>> {
+                google.SearchAsync(TextRequest),
+                yandex.SearchAsync(TextRequest),
+                bing.SearchAsync(TextRequest)
+            };//добавить нужную реализацию поиска в список
 
             Task<SearchResult> finished = await Task.WhenAny(allTasks);
             allTasks.Clear();
-                       
+
             SearchResult res = await finished;
 
             ViewBag.searchResults = new SearchResultsViewModel { resultItems = res.results, fullText = res.fullText }; //выбрать только результаты из нужных полей для вывода в таблицу во вью

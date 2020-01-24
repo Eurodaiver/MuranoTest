@@ -6,8 +6,8 @@
     <h1 class="display-4 mb-2">Welcome</h1>
 
     <form method="post">
-        <input type="text" name="TextRequest" />
-        <input type="submit" value="Отправить" />
+        <input class="" type="text" name="TextRequest" />
+        <input class="btn btn-primary ml-2" type="submit" value="Отправить" />
     </form>
     @if (ViewBag.searchResults != null)
     {
@@ -19,15 +19,12 @@
                     <div class="m-5 text-left p-3 shadow-lg">
                         <p class="font-weight-bold">@item.Header</p>
                         <p class="">@item.Text</p>
-
                         <p><a href="@item.Url">@item.Link</a></p>
-
                     </div>
                 }
-
         </div>
 
-        <p class="small bg-info m-5">@ViewBag.searchResults.fullText</p>
+        <p class="small bg-info text-white m-5 p-4">@ViewBag.searchResults.fullText</p>
     }
 
 </div>

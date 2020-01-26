@@ -35,7 +35,7 @@ namespace MuranoTest.Controllers
             //create a list of instances to execute them at the same time
             var allTasks = new List<Task<SearchResult>> {
                 google.SearchAsync(TextRequest),
-                //yandex.SearchAsync(TextRequest),
+                yandex.SearchAsync(TextRequest),
                 bing.SearchAsync(TextRequest)
             };
 

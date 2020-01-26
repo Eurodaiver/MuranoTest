@@ -1,10 +1,20 @@
 # Project Title
 
-One Paragraph of project description goes here
+A web application that searches for user-defined words in three search engines: Yandex, Google, Bing. The list of search engines can be easily supplemented.
+
+Search works by the following principle:
+The result that comes first is written to the database and displayed on the page, 
+responses from other services are ignored. The search result consists of the first 10 values returned by the service.
+
+There is also a separate page with a search bar, which allows you to search the records stored in the database.
+
+## Adding New Search Engines
+
+To add a new search engine to the project, you need to create a class that implements the [ISearchEngine] interface and add an instance of this class to the [IndexAsync] function in the [HomeController].
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+The sample instance is deployed on the Azure platform. It can be tested at the link http://
 
 ### Prerequisites
 
@@ -32,25 +42,10 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+## Tests
 
-Explain how to run the automated tests for this system
+The methods used in the application are covered by unit tests, which are in the solution along with the project.
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
@@ -58,29 +53,18 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+* [ASP.Net Core 3.0]() - Base platform
+* [EntityFramework]() - Microsoft.EntityFrameworkCore.SqlServer
+* [Json]() - Newtonsoft.Json nuget package used
 
 ## Versioning
 
 ## Authors
 
-* **Alexey Vasilyev** - *Initial work* - [PurpleBooth](https://github.com/Eurodaiver)
-
+* **Alexey Vasilyev** - [Eurodaiver](https://github.com/Eurodaiver)
 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+This project is licensed under the MIT License 
 

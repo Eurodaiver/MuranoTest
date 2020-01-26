@@ -73,7 +73,7 @@ namespace MuranoTest.Controllers
         }
 
         [HttpPost]
-        public IActionResult LocalSearchAsync(string TextRequest)
+        public IActionResult LocalSearch(string TextRequest)
         {
 
             var res = _context.searchResultItems.Where(x => x.Header.Contains(TextRequest)).ToList();

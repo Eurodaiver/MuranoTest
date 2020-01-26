@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MuranoTest.Controllers;
 using MuranoTest.Models;
@@ -11,12 +12,15 @@ namespace MuranoTest.Controllers.Tests.Controllers
     [TestClass()]
     public class HomeControllerTests
     {
-        private readonly SearchContext _context;
+        DbContextOptions<SearchContext> options = new DbContextOptionsBuilder<SearchContext>()
+         .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=murano1_db;Trusted_Connection=True;MultipleActiveResultSets=true")
+         .Options;
+
 
         [TestMethod()]
         public void IndexAsyncTest()
         {
-            HomeController controller = new HomeController(_context);
+            HomeController controller = new HomeController(new SearchContext(options));
 
             ViewResult result = controller.IndexAsync("test").Result as ViewResult;
 
@@ -26,11 +30,11 @@ namespace MuranoTest.Controllers.Tests.Controllers
 
 
         [TestMethod()]
-        public void LocalSearchAsyncTest()
+        public void LocalSearchTest()
         {
-            HomeController controller = new HomeController(_context);
+            HomeController controller = new HomeController(new SearchContext(options));
 
-            ViewResult result = controller.IndexAsync("test").Result as ViewResult;
+            ViewResult result = controller.LocalSearch("test") as ViewResult;
 
             Assert.IsNotNull(result);
             Assert.IsTrue(((SearchResultsViewModel)result.Model).resultItems.Count > 0);

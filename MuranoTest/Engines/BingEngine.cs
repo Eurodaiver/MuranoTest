@@ -1,11 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using MuranoTest.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace MuranoTest.Models
+namespace MuranoTest.Engines
 {
     public class BingEngine : ISearchEngine
     {
@@ -44,7 +45,7 @@ namespace MuranoTest.Models
 
 
 
-
+    //data model for Bing API response deserialization 
     public class BingSearchResult
     {
         public string _type { get; set; }

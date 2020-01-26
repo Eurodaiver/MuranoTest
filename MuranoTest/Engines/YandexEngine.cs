@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MuranoTest.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace MuranoTest.Models
+namespace MuranoTest.Engines
 {
     public class YandexEngine : ISearchEngine
     {

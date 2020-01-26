@@ -5,17 +5,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MuranoTest.Engines;
 using MuranoTest.Models;
 
 namespace MuranoTest.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly SearchContext _context;
+        public HomeController(SearchContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         [HttpGet]
@@ -27,36 +27,61 @@ namespace MuranoTest.Controllers
         [HttpPost]
         public async Task<IActionResult> IndexAsync(string TextRequest)
         {
+            //create instances of engines
             var google = new GoogleEngine();
             var yandex = new YandexEngine();
             var bing = new BingEngine();
 
+            //create a list of instances to execute them at the same time
             var allTasks = new List<Task<SearchResult>> {
                 google.SearchAsync(TextRequest),
-                yandex.SearchAsync(TextRequest),
+                //yandex.SearchAsync(TextRequest),
                 bing.SearchAsync(TextRequest)
-            };//добавить нужную реализацию поиска в список
+            };
 
+            //when the first task was completed
             Task<SearchResult> finished = await Task.WhenAny(allTasks);
             allTasks.Clear();
 
             SearchResult res = await finished;
 
-            ViewBag.searchResults = new SearchResultsViewModel { resultItems = res.results, fullText = res.fullText }; //выбрать только результаты из нужных полей для вывода в таблицу во вью
+            //save top 10 results
+            foreach (var r in res.results.Take(10))
+            {
+                try
+                {
+                    await _context.searchResultItems.AddAsync(r);
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
+            SearchResultsViewModel resultsViewModel = new SearchResultsViewModel { resultItems = res.results.Take(10).ToList(), fullText = res.fullText };
 
-            return View();
+            return View(resultsViewModel);
         }
 
-        public IActionResult Privacy()
+
+
+        [HttpGet]
+        public IActionResult LocalSearch()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        public IActionResult LocalSearchAsync(string TextRequest)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+
+            var res = _context.searchResultItems.Where(x => x.Header.Contains(TextRequest)).ToList();
+
+            var resultsViewModel = new SearchResultsViewModel { resultItems = res };
+
+            return View(resultsViewModel);
+
         }
     }
 }

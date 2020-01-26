@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuranoTest", "MuranoTest\MuranoTest.csproj", "{FCA3672D-D171-4CDA-9667-4BCEE2FE8FA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuranoTest", "MuranoTest\MuranoTest.csproj", "{FCA3672D-D171-4CDA-9667-4BCEE2FE8FA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuranoTestTests", "MuranoTestTests\MuranoTestTests.csproj", "{6165B9B3-5F20-4C3D-A15F-E31065679319}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FCA3672D-D171-4CDA-9667-4BCEE2FE8FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCA3672D-D171-4CDA-9667-4BCEE2FE8FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCA3672D-D171-4CDA-9667-4BCEE2FE8FA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6165B9B3-5F20-4C3D-A15F-E31065679319}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6165B9B3-5F20-4C3D-A15F-E31065679319}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6165B9B3-5F20-4C3D-A15F-E31065679319}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6165B9B3-5F20-4C3D-A15F-E31065679319}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,7 +13,7 @@ namespace MuranoTest.Controllers.Tests.Controllers
     public class HomeControllerTests
     {
         DbContextOptions<SearchContext> options = new DbContextOptionsBuilder<SearchContext>()
-         .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=murano1_db;Trusted_Connection=True;MultipleActiveResultSets=true")
+         .UseSqlServer("Server=tcp:muranodbserver.database.windows.net,1433;Initial Catalog=muranodb;Persist Security Info=False;User ID=daiver777;Password=Aok96ymV;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;")
          .Options;
 
 

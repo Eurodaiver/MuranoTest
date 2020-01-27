@@ -13,7 +13,7 @@
 
     <div class="container justify-content-center mt-5">
 
-        <h1 class="display-4 text-center">Murano Test Task</h1>
+        <h1 class="display-4 text-center">Global Search</h1>
 
         <form method="post">
             <div class="form-row justify-content-center mt-4">
@@ -25,14 +25,14 @@
                 </div>
             </div>
         </form>
-        
+
         @if (Model != null)
         {
-            <div class="m-5 text-left">
+            <div class="mx-1 my-5 text-left">
                 @if (Model != null)
                     @foreach (SearchResultItem item in Model.resultItems)
                     {
-                        <div class="m-4 text-left p-3 shadow">
+                        <div class="my-4 text-left p-3 shadow">
                             <p class="font-weight-bold">@item.Header</p>
                             <p class="">@item.Text</p>
                             <p><a href="@item.Url">@item.Link</a></p>
@@ -40,9 +40,12 @@
                     }
             </div>
 
-            <p class="small bg-info text-white m-5 p-4">@Model.fullText</p>
-        }
+            @if (Model.fullText != null)
+            {
+                <p class="small bg-info text-white m-5 p-4">@Model.fullText</p>
+            }
 
+         }
     </div>
 
 </body>

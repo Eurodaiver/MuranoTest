@@ -34,9 +34,10 @@ namespace MuranoTest.Controllers
 
             //create a list of instances to execute them at the same time
             var allTasks = new List<Task<SearchResult>> {
+                bing.SearchAsync(TextRequest),
                 google.SearchAsync(TextRequest),
-                yandex.SearchAsync(TextRequest),
-                bing.SearchAsync(TextRequest)
+                yandex.SearchAsync(TextRequest)
+                
             };
 
             //when the first task was completed
@@ -44,9 +45,9 @@ namespace MuranoTest.Controllers
             allTasks.Clear();
 
             SearchResult res = await finished;
-
+            var limitedList = res.results.Take(10).ToList();
             //save top 10 results
-            foreach (var r in res.results.Take(10))
+            foreach (var r in limitedList)
             {
                 try
                 {
@@ -59,7 +60,7 @@ namespace MuranoTest.Controllers
                 }
             }
 
-            SearchResultsViewModel resultsViewModel = new SearchResultsViewModel { resultItems = res.results.Take(10).ToList(), fullText = res.fullText };
+            SearchResultsViewModel resultsViewModel = new SearchResultsViewModel { resultItems = limitedList, fullText = (limitedList.Count == 0)? "Nothing found" : null };
 
             return View(resultsViewModel);
         }
@@ -72,13 +73,14 @@ namespace MuranoTest.Controllers
             return View();
         }
 
+        //Searching in our database
         [HttpPost]
         public IActionResult LocalSearch(string TextRequest)
         {
+            //as sample search in headers
+            var res = _context.searchResultItems.Where(x => x.Header.Contains(TextRequest)).Take(10).ToList();
 
-            var res = _context.searchResultItems.Where(x => x.Header.Contains(TextRequest)).ToList();
-
-            var resultsViewModel = new SearchResultsViewModel { resultItems = res };
+            var resultsViewModel = new SearchResultsViewModel { resultItems = res, fullText = (res.Count == 0) ? "Nothing found" : null };
 
             return View(resultsViewModel);
 

@@ -15,8 +15,11 @@ To add a new search engine to the project, you need to create a class that imple
 
 ## Getting Started
 
-The sample instance is deployed on the Azure platform. It can be tested at the link https://muranotest.azurewebsites.net/
-A page is also available for searching our stored data in the database. It can be tested at: https://muranotest.azurewebsites.net/home/localsearch
+The sample instance is deployed on the Azure platform. 
+It can be tested at the link https://muranotest.azurewebsites.net/
+
+A page is also available for searching our stored data in the database. 
+It can be tested at: https://muranotest.azurewebsites.net/home/localsearch
 
 ### Installing
 
@@ -27,9 +30,8 @@ Now the application is configured to work with the test database Azure.(You can 
 ## Tests
 
 The methods used in the application are covered by unit tests, which are in the solution along with the project.
-**HomeControllerTests**
 
-NOTE! For testing YandexEngine you need to change IP settings in яндекс.XML cabinet.
+NOTE! For testing YandexEngine you need to change IP settings in Yandex.XML cabinet.
 
 
 
